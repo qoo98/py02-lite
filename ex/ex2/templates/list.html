@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <title>初めてのFlaskアプリケーション</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form name="table" action="{{ url_for('index') }}" method='POST'>
+        <select name="table">
+            {% for table in tablename %}
+                {% if selectedTable == table  %}
+                    <option value="{{ table }}" selected>{{ table }}</option> 
+                {% else %}
+                    <option value="{{ table }}">{{ table }}</option>  
+                {% endif %} 
+            {% endfor %}         </select>
+        <button type="submit">Select</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+            {% for cl in columns %}
+                <th>{{cl}}</th>
+            {% endfor %}
+            </tr>
+
+        <tbody>
+            {% for items in data %}
+                <tr>
+                    {% for item in items %}
+                        <th>{{item}}</th>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+        {{ pagination.links }}
+  
+    </body>
+</html>
